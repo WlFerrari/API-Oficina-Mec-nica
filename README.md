@@ -1,4 +1,4 @@
-#API Oficina Mecânica
+# API Oficina Mecânica
 API REST desenvolvida em Java com Spring Boot para gerenciamento de uma oficina mecânica.
 Autenticação via Bearer Token (JWT).
 
