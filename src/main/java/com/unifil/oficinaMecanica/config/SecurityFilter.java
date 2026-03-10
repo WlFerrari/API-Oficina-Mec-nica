@@ -28,18 +28,18 @@ public class SecurityFilter extends OncePerRequestFilter {
             String token = authHeader.replace("Bearer ", "");
 
             try {
-                String username = jwtUtil.extractUsername(token); 
-                
-                if (username != null) {
-                    UsernamePasswordAuthenticationToken auth = 
-                            new UsernamePasswordAuthenticationToken(username, null, null);
+                String username = jwtUtil.extractUsername(token);
+
+                if (username != null && jwtUtil.validateToken(token, username)) {
+                    UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(username, null,
+                            null);
                     SecurityContextHolder.getContext().setAuthentication(auth);
                 }
             } catch (Exception e) {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 response.setContentType("application/json");
-                response.getWriter().write("{\"erro\": \"Token invalido ou expirado\"}");
-                return; 
+                response.getWriter().write("{\"erro\": \"Token inválido ou expirado\"}");
+                return;
             }
         }
 
