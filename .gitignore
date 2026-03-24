@@ -31,4 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
-load-tests/
+__pycache__/
+
+### Load Tests ###
+load-tests/requirements.txt
+load-tests/README.md
